@@ -51,7 +51,7 @@ public class MainWindow extends JFrame {
         controls.add(tickerField);
 
         controls.add(styledLabel("INTERVAL"));
-        intervalBox = styledCombo(new String[]{"5m", "1m", "15m", "30m", "60m"});
+        intervalBox = styledCombo(new String[]{"1m", "5m", "15m", "30m", "60m"});
         controls.add(intervalBox);
 
         controls.add(styledLabel("RANGE"));
