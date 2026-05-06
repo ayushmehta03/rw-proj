@@ -8,10 +8,6 @@ import java.net.URL;
 import java.time.*;
 import java.util.*;
 
-/**
- * Fetches intraday OHLCV data from Yahoo Finance v8 chart API.
- * ZERO external dependencies — JSON parsed with plain string operations.
- */
 public class YahooFinanceFetcher {
 
     public static List<StockData> fetch(String ticker, String interval, String period)
@@ -54,7 +50,6 @@ public class YahooFinanceFetcher {
         return parse(sb.toString());
     }
 
-    // ── Lightweight JSON extraction without any library ───────────────────────
 
     private static List<StockData> parse(String json) throws Exception {
         String result = extractFirstResult(json);
