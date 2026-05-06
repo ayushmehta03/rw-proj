@@ -3,10 +3,6 @@ package service;
 import model.StockData;
 import java.util.List;
 
-/**
- * Pure-Java candlestick pattern detector.
- * Mirrors TA-Lib's CDL_DOJI, CDL_HAMMER, CDL_ENGULFING logic.
- */
 public class PatternDetector {
 
     public static void detect(List<StockData> data) {
@@ -27,7 +23,6 @@ public class PatternDetector {
         }
     }
 
-    // ── Doji: body ≤ 10 % of total range ────────────────────────────────────
     private static boolean isDoji(StockData b) {
         double range = b.getHigh() - b.getLow();
         if (range == 0) return false;
@@ -35,7 +30,6 @@ public class PatternDetector {
         return body / range <= 0.10;
     }
 
-    // ── Hammer: small body at top, long lower shadow (≥ 2× body), tiny upper shadow
     private static boolean isHammer(StockData b) {
         double body       = Math.abs(b.getClose() - b.getOpen());
         double upperShadow = b.getHigh() - Math.max(b.getOpen(), b.getClose());
@@ -46,7 +40,6 @@ public class PatternDetector {
             && upperShadow <= 0.1 * range;
     }
 
-    // ── Engulfing: current body fully engulfs previous body, opposite colours
     private static boolean isEngulfing(StockData prev, StockData curr) {
         boolean prevBear = prev.getClose() < prev.getOpen();
         boolean currBull = curr.getClose() > curr.getOpen();
